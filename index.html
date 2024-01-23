@@ -8,6 +8,30 @@
     <title>Document</title>
 </head>
 <body>
+        <h1>First Lesson Vue Js</h1>
+    <div id="app">
+        <h3 v-if="characterList.length !== 0">List of characters </h3>
+        <h3 v-else>No  character list Found </h3>
+        <ul>
+            <li v-for="(character, index) in characterList">{{character.name}}</li>
+        </ul>
+            <span v-for="(character, index) in characterList">{{character.name}} {{index ===characterList.length - 1 ? "": ", "}}</span>
+
+
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        Vue.createApp({
+            data: ()=>({
+                characterList: [
+                    {name: "Massire"},
+                    {name: "Sita"},
+                    {name: "Elium"},
+                    {name: "Tarzan"},
+                ]
+            })
+        }).mount("#app");
+    </script>
 
 </body>
 </html>
