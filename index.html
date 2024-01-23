@@ -10,12 +10,22 @@
 <body>
         <h1>First Lesson Vue Js</h1>
     <div id="app">
-        <h3 v-if="characterList.length !== 0">List of characters </h3>
-        <h3 v-else>No  character list Found </h3>
-        <ul>
-            <li v-for="(character, index) in characterList">{{character.name}}</li>
-        </ul>
-            <span v-for="(character, index) in characterList">{{character.name}} {{index ===characterList.length - 1 ? "": ", "}}</span>
+
+        <p>{{count}}</p>
+
+        <p>Amout {{incrementAmount}}</p>
+
+        <label for="incrementAmount">Increment</label>
+        <input type="number"
+               v-model.number="incrementAmount"
+
+        >
+
+        <button
+                v-on:click="incrementCount"
+        >Increment count </button>
+
+
 
 
     </div>
@@ -23,13 +33,17 @@
     <script>
         Vue.createApp({
             data: ()=>({
-                characterList: [
-                    {name: "Massire"},
-                    {name: "Sita"},
-                    {name: "Elium"},
-                    {name: "Tarzan"},
-                ]
-            })
+                count: 10,
+                incrementAmount:5
+            }),
+            methods:{
+                incrementCount (){
+                    this.count += this.incrementAmount
+                },
+
+            }
+
+
         }).mount("#app");
     </script>
 
