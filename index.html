@@ -11,22 +11,18 @@
         <h1>First Lesson Vue Js</h1>
     <div id="app">
 
-        <p>{{count}}</p>
+        <p v-bind:data-increment-by="incrementAmount">{{count}}</p>
 
         <p>Amout {{incrementAmount}}</p>
 
         <label for="incrementAmount">Increment</label>
         <input type="number"
                v-model="incrementAmount"
-
         >
 
         <button
-                v-on:click="incrementCount"
+                @:click="incrementCount(10, $event)"
         >Increment count </button>
-
-
-
 
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -37,12 +33,13 @@
                 incrementAmount:5
             }),
             methods:{
-                incrementCount (){
+                incrementCount (newAmount, event){
+                    console.log(newAmount)
+                    console.log(event)
                     this.count += this.incrementAmount
                 },
 
             }
-
 
         }).mount("#app");
     </script>
