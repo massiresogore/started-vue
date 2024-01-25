@@ -23,7 +23,7 @@
  <div id="app">
     <div class="container">
         <div class="row1">
-
+                <h2>{{displayTitel}}</h2>
                 <p v-if="characterList.length > 0 ">List of character</p>
                 <p v-else>There are no list</p>
 
@@ -35,6 +35,8 @@
                 </ul>
             </div>
          <div class="row2">
+             <h3>{{count}}</h3>
+             <button @click="incrementAcount">increment acount</button>
              <p v-if="favoriteList.length > 0 ">List of favorite</p>
              <p v-else>There are no favorite list</p>
              <ul>
@@ -57,11 +59,11 @@
     <script>
         Vue.createApp({
             data: ()=>({
+                count: 10,
+                counterTitle: "Le titre du cour",
                characterList:[
                    {id: 1,name: "Adolphe"},
                    {id: 2,name: "Pénielle"},
-                   {id: 3,name: "Roga Roga"},
-                   {id: 4,name: "Chancel"},
                ],
                 favoriteList:[],
                 newCharacter: {
@@ -75,9 +77,28 @@
                 },
                 addNewCharacter(){
                    this.characterList.push(this.newCharacter)
+                },
+                incrementAcount(){
+                        this.count ++
                 }
-
+            },
+            watch:{
+                count(newValue){
+                    if(newValue > 15){
+                        this.counterTitle = "The titre is very long";
+                    }
+                }
+            },
+            computed:{
+                displayTitel(){
+                    if (this.count > 15){
+                        return "The title become long";
+                    }else {
+                        return "Title of cour";
+                    }
+                }
             }
+
 
 
         }).mount("#app");
